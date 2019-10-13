@@ -25,6 +25,7 @@ SOFTWARE.
 import UIKit
 import MessageKit
 import InputBarAccessoryView
+import MJRefresh
 
 /// A base class for the example controllers
 class ChatViewController: MessagesViewController, MessagesDataSource {
@@ -38,7 +39,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
 
     var messageList: [MockMessage] = []
     
-    let refreshControl = UIRefreshControl()
+    public lazy var refreshControl: MJRefreshHeader = {
+        let refresher = MJRefreshNormalHeader()
+        refresher.stateLabel.isHidden = true
+        refresher.lastUpdatedTimeLabel.isHidden = true
+        return refresher
+    }()
     
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -97,15 +103,14 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
     }
     
     func configureMessageCollectionView() {
-        
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messageCellDelegate = self
         
         scrollsToBottomOnKeyboardBeginsEditing = true // default false
         maintainPositionOnKeyboardFrameChanged = true // default false
         
-        messagesCollectionView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
+        messagesCollectionView.mj_header = refreshControl
+        refreshControl.setRefreshingTarget(self, refreshingAction: #selector(loadMoreMessages))
     }
     
     func configureMessageInputBar() {

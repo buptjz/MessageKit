@@ -1,14 +1,17 @@
 PODS:
   - InputBarAccessoryView (4.2.2)
-  - MessageKit (3.0.0-beta-swift4-2):
-    - InputBarAccessoryView
+  - MessageKit (3.0.0):
+    - InputBarAccessoryView (~> 4.2.2)
+  - MJRefresh (3.2.0)
 
 DEPENDENCIES:
   - MessageKit (from `../`)
+  - MJRefresh
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - InputBarAccessoryView
+    - MJRefresh
 
 EXTERNAL SOURCES:
   MessageKit:
@@ -16,8 +19,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
-  MessageKit: feb3ca4fa02a14f3391781323ced1da84a0aa73c
+  MessageKit: 727f80d121b859855ad9fba3d032d23705147c78
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
 
-PODFILE CHECKSUM: cecdb7bc8129cf99f66de9f68eea3256fec30c3d
+PODFILE CHECKSUM: a53223c6190f1acf2700787fe71f21a7f80ab0ec
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.3
